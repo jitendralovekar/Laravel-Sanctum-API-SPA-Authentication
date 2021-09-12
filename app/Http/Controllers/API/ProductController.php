@@ -17,9 +17,12 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $products = Product::all();
-    
-        return $this->sendResponse(ProductResource::collection($products), 'Products retrieved successfully.');
+        $products = Product::paginate(6);
+		return response()->json($products,200);
+        
+        // Provide Pagination Links to the response
+        //$products = Product::all();
+        //return $this->sendResponse(ProductResource::collection($products), 'Products retrieved successfully.');
     }
     /**
      * Store a newly created resource in storage.
